@@ -7,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-//Default generate EMPLOYEE table
-@Table
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -59,10 +57,5 @@ public class Employee {
 
 	public void setDeg(String deg) {
 		this.deg = deg;
-	}
-
-	@Override
-	public String toString() {
-		return "Employee [eid=" + eid + ", ename=" + ename + ", salary=" + salary + ", deg=" + deg + "]";
 	}
 }
