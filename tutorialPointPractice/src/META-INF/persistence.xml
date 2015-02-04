@@ -8,6 +8,8 @@
 
 		<class>com.architree.eclipselink.entity.Employee</class>
 		<class>com.architree.eclipselink.entity.Department</class>
+		<class>com.architree.eclipselink.entity.Clas</class>
+		<class>com.architree.eclipselink.entity.Teacher</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jpadb" />
