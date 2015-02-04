@@ -10,9 +10,11 @@ public class CreateEmployee
 	public static void main( String[ ] args ) 
 	{
 		create();
+		find();
+		delete();
+		find();
 	}
 
-	
 	/**
 	 * In the above code the createEntityManagerFactory () creates a persistence unit by providing the same unique name 
 	 * which we provide for persistence-unit in persistent.xml file. 
@@ -37,6 +39,39 @@ public class CreateEmployee
 		entitymanager.persist( employee );
 		entitymanager.getTransaction( ).commit( );
 		
+		entitymanager.close( );
+		emfactory.close( );
+	}
+	
+	private static void find() {
+		EntityManagerFactory emfactory = Persistence
+				.createEntityManagerFactory( "Eclipselink_JPA" );
+		EntityManager entitymanager = emfactory.
+				createEntityManager();
+		Employee employee = entitymanager.
+				find( Employee.class, 1201 );
+		
+		if (employee !=null) {
+			System.out.println("employee ID = "+employee.getEid( ));
+			System.out.println("employee NAME = "+employee.getEname( ));
+			System.out.println("employee SALARY = "+employee.getSalary( ));
+			System.out.println("employee DESIGNATION = "+employee.getDeg( ));	
+		} else {
+			System.out.println("employee is not found");
+		}
+				
+	}
+	
+	private static void delete() {
+		EntityManagerFactory emfactory = Persistence.
+				createEntityManagerFactory( "Eclipselink_JPA" );
+		EntityManager entitymanager = emfactory.
+				createEntityManager( );
+		entitymanager.getTransaction( ).begin( );
+		Employee employee=entitymanager.
+				find( Employee.class, 1201 );
+		entitymanager.remove( employee );
+		entitymanager.getTransaction( ).commit( );
 		entitymanager.close( );
 		emfactory.close( );
 	}
